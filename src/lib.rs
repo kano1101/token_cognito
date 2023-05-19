@@ -11,7 +11,7 @@ pub struct TokenClient<'a> {
 }
 
 impl<'a> TokenClient<'a> {
-    pub fn bulider() -> TokenClientBuilder<'a> {
+    pub fn builder() -> TokenClientBuilder<'a> {
         TokenClientBuilder { getter: None }
     }
 }
@@ -38,7 +38,7 @@ impl<'a> TokenClientBuilder<'a> {
 
 impl<'a> TokenClient<'a> {
     #[allow(dead_code)]
-    async fn run(
+    pub async fn run(
         &self,
         username: &str,
         password: &str,
