@@ -1,0 +1,13 @@
+[package]
+name = "token_cognito"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.71"
+aws-config = "0.55.2"
+aws-sdk-cognitoidentityprovider = "0.27.0"
+cognito_secret_hash = { path = "../../rust/cognito_secret_hash" }
+cognito_srp = "0.1.2"
+tracing = { version = "0.1.37", features = ["log"] }
+tracing-subscriber = { version = "0.3.17", default-features = false, features = ["fmt"] }
