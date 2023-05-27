@@ -1,13 +1,13 @@
 use async_trait::async_trait;
 
 #[async_trait]
-pub trait GetAuthInfo {
-    async fn run(&self) -> anyhow::Result<(String, String, String)>;
+pub trait GetAuthInfo<'a> {
+    async fn run(&'a self) -> anyhow::Result<(String, String, String)>;
 }
 
 pub struct TokenClient<'a> {
     #[allow(dead_code)]
-    getter: &'a dyn GetAuthInfo,
+    getter: &'a dyn GetAuthInfo<'a>,
 }
 
 impl<'a> TokenClient<'a> {
@@ -17,11 +17,11 @@ impl<'a> TokenClient<'a> {
 }
 
 pub struct TokenClientBuilder<'a> {
-    getter: Option<&'a dyn GetAuthInfo>,
+    getter: Option<&'a dyn GetAuthInfo<'a>>,
 }
 
 impl<'a> TokenClientBuilder<'a> {
-    pub fn set_getter(mut self, getter: Option<&'a dyn GetAuthInfo>) -> Self {
+    pub fn set_getter(mut self, getter: Option<&'a dyn GetAuthInfo<'a>>) -> Self {
         self.getter = getter;
         self
     }
